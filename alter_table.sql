@@ -1,0 +1,1 @@
+ALTER TABLE employees ADD CONSTRAINT “Check_Salary_Limit” CHECK (salary < 5000)
