@@ -2,7 +2,7 @@ DROP TRIGGER IF EXISTS verify_{} on {};
 DROP FUNCTION IF EXISTS {};
 
 CREATE FUNCTION {}()
-RETURNS trigger AS $BODY$
+RETURNS trigger AS $$
 BEGIN
 IF new.{} {} {} THEN
     RETURN NEW;
@@ -10,7 +10,7 @@ ELSE
     RAISE EXCEPTION 'Invalid {}';
 END IF;
 END;
-$BODY$
+$$
 LANGUAGE 'plpgsql';
 
 CREATE TRIGGER verify_{} BEFORE INSERT OR UPDATE ON {}
