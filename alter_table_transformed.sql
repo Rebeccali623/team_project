@@ -21,4 +21,4 @@ DROP TRIGGER IF EXISTS employees_birth_date_check on employees;
 DROP FUNCTION IF EXISTS verify_employees_birth_date_check;
 
 DROP TRIGGER IF EXISTS positive_salary on employees;
-DROP FUNCTION IF EXISTS verify_positive_salary;
+DROP FUNCTION IF EXISTS verify_positive_salary; 
