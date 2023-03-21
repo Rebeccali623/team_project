@@ -5,5 +5,5 @@ CREATE TABLE employees (
 	last_name VARCHAR (50),
 	birth_date DATE CHECK (birth_date > '1900-01-01'),
 	joined_date DATE CHECK (joined_date > birth_date),
-	salary numeric CHECK (salary > 0)
+	salary numeric CONSTRAINT positive_salary CHECK (salary > 0)
 );

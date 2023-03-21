@@ -8,6 +8,24 @@ CREATE TABLE employees (
 	salary numeric
 );
 
+DROP TRIGGER IF EXISTS positive_salary on employees;
+DROP FUNCTION IF EXISTS verify_positive_salary;
+
+CREATE FUNCTION verify_positive_salary()
+RETURNS trigger AS $$
+BEGIN
+IF new.salary > 0 THEN
+    RETURN NEW;
+ELSE 
+    RAISE EXCEPTION 'Invalid salary in employees';
+END IF;
+END;
+$$
+LANGUAGE 'plpgsql';
+
+CREATE TRIGGER positive_salary BEFORE INSERT OR UPDATE ON employees
+            FOR EACH ROW EXECUTE PROCEDURE verify_positive_salary();
+
 DROP TRIGGER IF EXISTS employees_birth_date_check on employees;
 DROP FUNCTION IF EXISTS verify_employees_birth_date;
 
@@ -43,21 +61,3 @@ LANGUAGE 'plpgsql';
 
 CREATE TRIGGER employees_joined_date_check BEFORE INSERT OR UPDATE ON employees
             FOR EACH ROW EXECUTE PROCEDURE verify_employees_joined_date();
-
-DROP TRIGGER IF EXISTS employees_salary_check on employees;
-DROP FUNCTION IF EXISTS verify_employees_salary;
-
-CREATE FUNCTION verify_employees_salary()
-RETURNS trigger AS $$
-BEGIN
-IF new.salary > 0 THEN
-    RETURN NEW;
-ELSE 
-    RAISE EXCEPTION 'Invalid salary in employees';
-END IF;
-END;
-$$
-LANGUAGE 'plpgsql';
-
-CREATE TRIGGER employees_salary_check BEFORE INSERT OR UPDATE ON employees
-            FOR EACH ROW EXECUTE PROCEDURE verify_employees_salary();
