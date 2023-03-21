@@ -7,7 +7,6 @@ CREATE TABLE employees (
 	joined_date DATE,
 	salary numeric
 );
-
 DROP TRIGGER IF EXISTS positive_salary on employees;
 DROP FUNCTION IF EXISTS verify_positive_salary;
 
@@ -25,7 +24,7 @@ LANGUAGE 'plpgsql';
 
 CREATE TRIGGER positive_salary BEFORE INSERT OR UPDATE ON employees
             FOR EACH ROW EXECUTE PROCEDURE verify_positive_salary();
-
+            
 DROP TRIGGER IF EXISTS employees_birth_date_check on employees;
 DROP FUNCTION IF EXISTS verify_employees_birth_date;
 
@@ -43,7 +42,7 @@ LANGUAGE 'plpgsql';
 
 CREATE TRIGGER employees_birth_date_check BEFORE INSERT OR UPDATE ON employees
             FOR EACH ROW EXECUTE PROCEDURE verify_employees_birth_date();
-
+            
 DROP TRIGGER IF EXISTS employees_joined_date_check on employees;
 DROP FUNCTION IF EXISTS verify_employees_joined_date;
 
@@ -61,3 +60,4 @@ LANGUAGE 'plpgsql';
 
 CREATE TRIGGER employees_joined_date_check BEFORE INSERT OR UPDATE ON employees
             FOR EACH ROW EXECUTE PROCEDURE verify_employees_joined_date();
+            
