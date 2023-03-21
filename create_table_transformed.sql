@@ -59,5 +59,5 @@ $$
 LANGUAGE 'plpgsql';
 
 CREATE TRIGGER employees_joined_date_check BEFORE INSERT OR UPDATE ON employees
-            FOR EACH ROW EXECUTE PROCEDURE verify_employees_joined_date();
+            FOR EACH ROW EXECUTE PROCEDURE verify_employees_joined_date(); 
             
