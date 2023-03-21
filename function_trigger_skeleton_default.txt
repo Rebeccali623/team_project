@@ -14,5 +14,5 @@ $$
 LANGUAGE 'plpgsql';
 
 CREATE TRIGGER {}_{}_check BEFORE INSERT OR UPDATE ON {}
-            FOR EACH ROW EXECUTE PROCEDURE verify_{}_{}();
+            FOR EACH ROW EXECUTE PROCEDURE verify_{}_{}(); 
             
