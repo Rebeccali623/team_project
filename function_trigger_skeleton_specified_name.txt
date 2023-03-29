@@ -1,0 +1,17 @@
+DROP TRIGGER IF EXISTS {} on {};
+DROP FUNCTION IF EXISTS verify_{};
+
+CREATE FUNCTION verify_{}()
+RETURNS trigger AS $$
+BEGIN
+IF new.{} {} {} THEN
+    RETURN NEW;
+ELSE 
+    RAISE EXCEPTION 'Invalid {} in {}';
+END IF;
+END;
+$$
+LANGUAGE 'plpgsql';
+
+CREATE TRIGGER {} BEFORE INSERT OR UPDATE ON {}
+            FOR EACH ROW EXECUTE PROCEDURE verify_{}(); 
